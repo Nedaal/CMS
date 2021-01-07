@@ -31,7 +31,17 @@
         <td> <img src=" {{ asset('/storage/'.$post->image) }}" width ="60px" height="60px" alt=""></td>
         <td>{{$post->title}}</td>
         
-        <td><a href="{{route('posts.edit', $post->id)}}" class="btn btn-info btn-sm "> Edit</a>
+        <td>
+        
+        @if (!$post->trashed())
+        <a href="{{route('posts.edit', $post->id)}}" class="btn btn-info btn-sm "> 
+            Edit
+           
+    </a>
+        @endif
+        
+        
+        
          
         </td>
         
@@ -42,7 +52,11 @@
 
         @method('DELETE')
 
-        <button type="submit" class="btn btn-danger btn-sm"> Trash</button>
+        <button type="submit" class="btn btn-danger btn-sm"> 
+            
+            {{$post->trashed() ? 'Delete':'Trash'}}
+            
+            </button>
         </form>
         
         
