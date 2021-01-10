@@ -116,7 +116,7 @@ return redirect(route('posts.index'));
 
 
 
-    public function trashed(Post $post){
+    public function trashed(){
 
    $trashed=Post::withTrashed()->get();
 

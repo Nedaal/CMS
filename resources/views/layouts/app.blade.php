@@ -102,7 +102,7 @@
         <li class="list-group-item">
      
             <a href="{{route('trashed-posts.index')}}"> Trash</a>
-            </li>
+        </li>
      
      </ul>
         
