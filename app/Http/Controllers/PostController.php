@@ -137,4 +137,18 @@ return redirect(route('posts.index'));
 
    return view('posts.index')->with('posts',$trashed);
     }
+
+
+    public function restore($id){
+
+ $post=Post::withTrashed()->where('id',$id)->first();
+
+
+$post->restore();
+
+session()->flash('success','Post has been Restored successfully ');
+
+
+return redirect()->back();
+    }
 }

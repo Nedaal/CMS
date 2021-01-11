@@ -38,7 +38,19 @@
             Edit
            
     </a>
+    @else
+<form action="{{route('restore-posts', $post->id)}}" method="POST">
+    @csrf
+
+    @method('PUT')
+
+    <button class="btn btn-info btn-sm"> Restore</button>
+
+</form>
+
         @endif
+            
+       
         
         
         
