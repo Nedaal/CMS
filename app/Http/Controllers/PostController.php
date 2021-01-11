@@ -74,9 +74,9 @@ return redirect(route('posts.index'));
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Post $post)
     {
-        //
+        return view('posts.create')->with('post',$post);
     }
 
     /**
@@ -88,7 +88,22 @@ return redirect(route('posts.index'));
      */
     public function update(UpdatePostsRequest $request,Post $post)
     {
-        //
+
+        $data=$request->only(['title','description','published_at','content']);
+     if($request->hasFile('image')){
+
+      $image=  $request->image->store('posts');
+      Storage::delete($post->image);
+
+      $data['image']=$image;
+     }
+
+   $post->update($data);
+
+   session()->flash('success','The post has been updated successfully');
+
+   return redirect(route('posts.index'));
+
     }
 
     /**
@@ -118,7 +133,7 @@ return redirect(route('posts.index'));
 
     public function trashed(){
 
-   $trashed=Post::withTrashed()->get();
+   $trashed=Post::onlyTrashed()->get();
 
    return view('posts.index')->with('posts',$trashed);
     }
