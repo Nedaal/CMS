@@ -86,11 +86,24 @@
   <select name="category" id="category" class="form-control">
 
  @foreach ($categories as $category)
- <option value="{{$category->id}}" @if ($category->id === $post->category_id)
+ <option value="{{$category->id}}" 
+    
+    @if (isset($post))
+
+    @if ($category->id === $post->category_id)
 
     selected
         
-    @endif> {{$category->name}}
+    @endif
+
+        
+    @endif
+    
+    
+    
+    
+    
+    > {{$category->name}}
 
  
 

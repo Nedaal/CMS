@@ -20,6 +20,7 @@
 
    <thead>
        <th> Name</th>
+       <th> Post Count</th>
 </thead> 
 
 <tbody>
@@ -33,6 +34,14 @@
         <button class="btn btn-danger btn-sm" onclick="handleDelete({{$category->id}})">Delete</button>
         
         
+        </td>
+
+
+        <td>
+
+
+   {{$category->posts->count()}}
+
         </td>
      
 
