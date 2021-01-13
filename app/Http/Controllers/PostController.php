@@ -7,6 +7,7 @@ use App\Http\Requests\Posts\CreatePostsRequest;
 use App\Http\Requests\Posts\UpdatePostsRequest;
 use App\Post;
 use Illuminate\Support\Facades\Storage;
+use App\Category;
 
 
 class PostController extends Controller
@@ -28,7 +29,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('posts.create');
+        return view('posts.create')->with('categories',Category::all());
     }
 
     /**
@@ -47,7 +48,8 @@ class PostController extends Controller
     'description'=>$request->description,
     'content'=>$request->content,
     'image'=>$image,
-    'published_at'=>$request->published_at
+    'published_at'=>$request->published_at,
+    'category_id'=>$request->category
            ]
            );
 
@@ -76,7 +78,7 @@ return redirect(route('posts.index'));
      */
     public function edit(Post $post)
     {
-        return view('posts.create')->with('post',$post);
+        return view('posts.create')->with('post',$post)->with('categories',Category::all());
     }
 
     /**

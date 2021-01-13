@@ -78,6 +78,31 @@
 </div>
 
 
+
+<div class="form-group">
+
+    <label for="category" >Category</label>
+
+  <select name="category" id="category" class="form-control">
+
+ @foreach ($categories as $category)
+ <option value="{{$category->id}}" @if ($category->id === $post->category_id)
+
+    selected
+        
+    @endif> {{$category->name}}
+
+ 
+
+
+</option>
+     
+ @endforeach
+
+  </select>
+</div>
+
+
 @if (isset($post))
     <div class="form-group">
 
