@@ -20,6 +20,7 @@
 
    <thead>
        <th> Name</th>
+       <th> Action</th>
        <th> Post Count</th>
 </thead> 
 
