@@ -21,6 +21,7 @@
    <thead>
     <th> Image</th>
        <th> Title</th>
+       <th> Category</th>
 </thead> 
 
 <tbody  >
@@ -31,6 +32,9 @@
         <td> <img src=" {{ asset('/storage/'.$post->image) }}" width ="60px" height="60px" alt=""></td>
         <td>{{$post->title}}</td>
         
+
+
+        <td> {{$post->category->name}}</td>
         <td>
         
         @if (!$post->trashed())

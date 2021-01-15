@@ -91,7 +91,7 @@ return redirect(route('posts.index'));
     public function update(UpdatePostsRequest $request,Post $post)
     {
 
-        $data=$request->only(['title','description','published_at','content']);
+        $data=$request->only(['title','description','published_at','content','category_id']);
      if($request->hasFile('image')){
 
       $image=  $request->image->store('posts');
