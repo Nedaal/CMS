@@ -7,7 +7,7 @@
 <div class="card-header">
 
 
-   Create Categories
+   Create tags
 
 
 </div>
@@ -17,10 +17,10 @@
     @include('partial.error')
 
     
-<form action="{{isset($category)? route('categories.update',$category->id):route('categories.store')}}" method="POST">
+<form action="{{isset($tag)? route('tags.update',$tag->id):route('tags.store')}}" method="POST">
 @csrf
 
-@if (isset($category))
+@if (isset($tag))
 
 @method('PUT')
     
@@ -30,12 +30,12 @@
 
     <label for="name" >Name</label>
 
-    <input type="text" class="form-control" name="name" id="name" value="{{isset($category)? $category->name:''}}">
+    <input type="text" class="form-control" name="name" id="name" value="{{isset($tag)? $tag->name:''}}">
 </div>
 <div class="form-group">
     <button class="btn btn-success">
 
-    {{isset($category)? 'Save Category' : 'Add Category'}}
+    {{isset($tag)? 'Save tag' : 'Add tag'}}
 
         
     </button>

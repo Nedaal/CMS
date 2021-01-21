@@ -8,7 +8,7 @@ use App\Http\Requests\Posts\UpdatePostsRequest;
 use App\Post;
 use Illuminate\Support\Facades\Storage;
 use App\Category;
-
+use App\Tag;
 
 class PostController extends Controller
 {
@@ -45,7 +45,7 @@ public function __construct(){
      */
     public function create()
     {
-        return view('posts.create')->with('categories',Category::all());
+        return view('posts.create')->with('categories',Category::all())->with('tags',Tag::all());
     }
 
     /**
@@ -58,7 +58,7 @@ public function __construct(){
     {
        $image=$request->image->store('posts');
 
-       Post::create(
+      $post= Post::create(
            [
     'title'=>$request->title,
     'description'=>$request->description,
@@ -69,6 +69,10 @@ public function __construct(){
            ]
            );
 
+
+           if($request->tags){
+               $post->tags()->attach($request->tags);
+           }
 
 session()->flash('success','New Post has been Added');
 return redirect(route('posts.index'));
@@ -94,7 +98,8 @@ return redirect(route('posts.index'));
      */
     public function edit(Post $post)
     {
-        return view('posts.create')->with('post',$post)->with('categories',Category::all());
+
+        return view('posts.create')->with('post',$post)->with('categories',Category::all())->with('tags',Tag::all());
     }
 
     /**
@@ -116,7 +121,16 @@ return redirect(route('posts.index'));
       $data['image']=$image;
      }
 
+
+if($request->tags){
+    $post->tags()->sync($request->tags);
+}
+
+
    $post->update($data);
+
+
+
 
    session()->flash('success','The post has been updated successfully');
 
