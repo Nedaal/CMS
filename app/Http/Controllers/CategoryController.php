@@ -103,7 +103,10 @@ class CategoryController extends Controller
         if($category->posts->count() >0){
 
             session()->flash('error','The category Cannot be deleted because it has many posts');
+
+            return redirect()->back();
         }
+        
         $category->delete();
 
         session()->flash('success','The category has been deleted successfully');

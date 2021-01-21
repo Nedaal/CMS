@@ -103,6 +103,7 @@ class TagsController extends Controller
         if($Tag->posts->count() >0){
 
             session()->flash('error','The Tag Cannot be deleted because it has many posts');
+            return redirect()->back();
         }
         $Tag->delete();
 
