@@ -15,6 +15,15 @@ public function index(){
 }
 
 
+public function makeAdmin(User $user){
 
+    $user->role='admin';
+    $user->save();
+
+    session()->flash('success','The user has been converted to admin');
+
+    return  redirect(route('users.index'));
+
+}
 
 }

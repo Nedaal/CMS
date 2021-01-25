@@ -51,7 +51,19 @@
 
                    @if (!$user->isAdmin())
                    
-                   <button class="btn btn-success"> Make Admin</button>
+
+                    <form action="{{route('users.makeAdmin', $user->id)}}" method="POST">
+                    
+                    @csrf
+
+
+                    
+                        <button class="btn btn-success"> Make Admin</button>
+                    </form>
+
+
+
+                  
                        
                    @endif
 
