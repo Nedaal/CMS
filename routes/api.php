@@ -21,3 +21,4 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('posts','PostControllerapi@index');
+Route::get('posts/{id}','PostControllerapi@show');

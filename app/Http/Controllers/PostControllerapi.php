@@ -33,9 +33,11 @@ class PostControllerapi extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request)
     {
-        //
+       $posts=Post::find(1)->where('category_id', '=', $request->id)->take(3)->get();
+
+       return response()->json($posts);
     }
 
     /**
