@@ -35,7 +35,7 @@ public function __construct(){
      */
     public function index()
     {
-        return view('posts.index')->with('posts', Post::all());
+        return view('posts.index')->with('posts', Post::paginate(3));
     }
 
     /**
