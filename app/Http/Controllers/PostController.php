@@ -112,7 +112,15 @@ return redirect(route('posts.index'));
     public function update(UpdatePostsRequest $request,Post $post)
     {
 
-        $data=$request->only(['title','description','published_at','content','category_id']);
+        // $data=$request->only(['title','description','published_at','content','category_id']);
+
+        $data['title']=$request->title;
+        $data['description']=$request->description;
+        $data['published_at']=$request->published_at;
+        $data['content']=$request->content;
+        $data['category_id']=$request->category;
+
+
      if($request->hasFile('image')){
 
       $image=  $request->image->store('posts');
