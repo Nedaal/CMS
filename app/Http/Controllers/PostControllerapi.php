@@ -24,7 +24,28 @@ class PostControllerapi extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $image=$request->image->store('posts');
+
+      $post= Post::create(
+           [
+    'title'=>$request->title,
+    'description'=>$request->description,
+    'content'=>$request->content,
+    'image'=>$image,
+    'published_at'=>$request->published_at,
+    'category_id'=>$request->category
+           ]
+           );
+
+
+           if($request->tags){
+               $post->tags()->attach($request->tags);
+           }
+
+
+return response()->json('Post has been Created successfully with id ');
+
+       
     }
 
     /**
